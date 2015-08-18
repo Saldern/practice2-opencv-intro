@@ -24,6 +24,7 @@ class Application
     struct GUIElementsState
     {
         WindowState state;
+		bool saveState;
         cv::Rect onButtonPlace;
         cv::Rect offButtonPlace;
 		cv::Rect saveButtonPlace;
@@ -38,6 +39,7 @@ class Application
     Application() 
     { 
         guiState.state = OnFilter;
+		guiState.saveState = false;
     };
 
  private:

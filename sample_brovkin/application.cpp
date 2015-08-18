@@ -1,5 +1,6 @@
 #include "application.hpp"
 #include "processing.hpp"
+#include <conio.h>
 
 #include <opencv2/highgui/highgui.hpp>
 
@@ -78,7 +79,7 @@ int Application::showFrame(const std::string &caption,
     {
         processFrame(src, dst);
     }
-    else
+    else 
     {
         return 1;
     }
@@ -89,6 +90,17 @@ int Application::showFrame(const std::string &caption,
     Mat dstRoi = display(Rect(src.cols, 0, dst.cols, dst.rows));
     dst.copyTo(dstRoi);       
     
+	if (guiState.saveState)
+	{
+	  // получить текущее время
+	  // сгенерировать название изображения
+	  // <image_name> - сгенерированное название изображения
+	  //                с меткой текущего времени
+	  // вызвать функцию сохранения imwrite(<image_name>, display)
+	  // сбросить значение guiState.saveState в false
+	}
+
+
     drawButtons(display);
     
     namedWindow(caption);  
@@ -117,6 +129,11 @@ void onButtonsOnOffClick(int eventId, int x, int y, int flags, void *userData)
         elems->state = Application::OffFilter;
         return;
     }
+	if (onButtonClicked(elems->saveButtonPlace, x,y))
+	{
+		elems->saveState = true;
+		return;
+	}
 }
 
 bool onButtonClicked(cv::Rect buttonPlace, int x, int y)
