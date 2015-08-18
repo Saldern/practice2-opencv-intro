@@ -13,10 +13,10 @@ void Processing::processFrame(const cv::Mat& src, cv::Mat& dst, FilterType filte
 
 	const int kSize = 11;
 	switch (filter){
-		case MEDIAN:	medianBlur(roi, roi, kSize);break;
+		case MEDIAN:  medianBlur(roi, roi, kSize);break;
 		case CVT_CONVERT_GRAY:	break;
 		case PIXELIZED: break;
-		case CANNY: break;
+		case CANNY: Canny(roi,roi,50000,10000);break;
 	}
 	rectangle(dst, region, Scalar(255, 0, 0));
 }

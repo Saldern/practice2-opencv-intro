@@ -23,11 +23,15 @@ class Application
     };
     struct GUIElementsState
     {
+		FilterType filter;
         WindowState state;
 		bool saveState;
-        cv::Rect onButtonPlace;
+        cv::Rect medianButtonPlace;
         cv::Rect offButtonPlace;
 		cv::Rect saveButtonPlace;
+		cv::Rect greyButtonPlace;
+		cv::Rect pxlButtonPlace;
+		cv::Rect cannyButtonPlace;
     };
     int parseArguments(int argc, const char **argv, Parameters &params);
     int getFrame(const std::string &fileName, cv::Mat& src);
@@ -38,6 +42,7 @@ class Application
                                     int flags, void *userData);
     Application() 
     { 
+		guiState.filter = MEDIAN;
         guiState.state = OnFilter;
 		guiState.saveState = false;
     };
